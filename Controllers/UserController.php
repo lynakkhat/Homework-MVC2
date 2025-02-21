@@ -62,9 +62,9 @@ class UserController extends BaseController {
 
     public function logout() {
         session_start();
-        session_unset();  // Remove all session variables
-        session_destroy();  // Destroy the session
-        $this->redirect("/users");  // Redirect to the home page
+        session_unset();  
+        session_destroy();  
+        $this->redirect("/users");  
     }
     
 }
