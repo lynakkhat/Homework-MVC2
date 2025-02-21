@@ -21,6 +21,13 @@ class UserController extends BaseController {
         $password = htmlspecialchars($_POST['password']);
         $encrypted_password = password_hash($password, PASSWORD_DEFAULT);
         $role = htmlspecialchars($_POST['role']);
+
+        $existingUser = $this->users->getUserByEmail($email);
+        if ($existingUser) {
+            echo "<script>alert('Email already exists. Please use a different email.'); window.history.back();</script>";
+            exit; 
+        }
+
         $this->users->createUser($name, $email, $encrypted_password, $role);
         header("Location: /users");
     }
